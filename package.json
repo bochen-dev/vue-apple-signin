@@ -1,0 +1,34 @@
+{
+  "name": "vue-apple-signin",
+  "version": "0.1.0",
+  "description": "A vue plugin to include a Apple sign-in button into your web app.",
+  "main": "dist/vue-apple-signin.min.js",
+  "author": {
+    "name": "Brandon Chen",
+    "email": "code.bochen@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenpion/vue-apple-signin"
+  },
+  "keywords": [
+    "Vue",
+    "Apple",
+    "oAuth",
+    "sign-in",
+    "sign in",
+    "log-in",
+    "log in"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "./node_modules/.bin/eslint index.js && terser index.js -o ./dist/vue-apple-signin.min.js",
+    "lint": "./node_modules/.bin/eslint index.js"
+  },
+  "devDependencies": {
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "terser": "^4.0.0"
+  }
+}
