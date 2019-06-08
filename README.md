@@ -48,7 +48,7 @@ Now you have a `vue-apple-signin` global component, ready for use.
 |---|---|---|---|
 |color|`String`|`black`|`black` / `white`|
 |border|`Boolean`|`true`|`true` / `false`|
-|type|`String`|`sign in`|`sign in` / `sign up` / `apple` / `continue`,|
+|type|`String`|`sign in`|`sign in` / `sign up` / `apple` / `continue`|
 
 ## Known issues
 `<!DOCTYPE html>` in the `html` file may causes button style to be messed up,
