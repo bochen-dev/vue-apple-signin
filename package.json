@@ -1,6 +1,6 @@
 {
   "name": "vue-apple-signin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A vue plugin to include a Apple sign-in button into your web app.",
   "main": "dist/vue-apple-signin.min.js",
   "author": {
