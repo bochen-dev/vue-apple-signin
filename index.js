@@ -36,7 +36,9 @@ export default {
             ].indexOf(value) > -1
           }
 
-        }
+        },
+        onSuccess: null,
+        onFail: null,
       },
       computed: {
         dataBorder () {
@@ -53,7 +55,8 @@ export default {
           clientId,
           scope,
           redirectURI,
-          state
+          state,
+          usePopup
         } = options
 
         if (!clientId) {
@@ -80,19 +83,43 @@ export default {
           clientId,
           scope,
           redirectURI,
-          state
+          state,
+          usePopup
         })
+
+        const self = this;
+        document.addEventListener('AppleIDSignInOnSuccess', (data) => {
+          if(self.onSuccess){
+            const appleUserData = self.getAppleDataFromToken(data.detail.authorization.id_token);
+            self.onSuccess({authorization: data.detail.authorization, userData: appleUserData});
+          }
+        });
+        document.addEventListener('AppleIDSignInOnFailure', (error) => {
+          if(self.onFail) {
+            self.onFail(error);
+          }
+        });
+      },
+      methods:{
+        getAppleDataFromToken(token){
+          var base64Url = token.split('.')[1];
+          var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+          var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          }).join(''));
+          return JSON.parse(jsonPayload);
+        },
       },
       render (createElement) {
         return createElement(
-          'div', {
-            attrs: {
-              id: 'appleid-signin',
-              'data-color': this.color,
-              'data-border': this.dataBorder,
-              'data-type': this.type
-            }
-          },
+            'div', {
+              attrs: {
+                id: 'appleid-signin',
+                'data-color': this.color,
+                'data-border': this.dataBorder,
+                'data-type': this.type
+              }
+            },
         )
       }
     })

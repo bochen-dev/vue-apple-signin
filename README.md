@@ -24,6 +24,7 @@ Vue.use(VueAppleSignin, {
   scope: 'SCOPE',
   redirectURI: 'REDIRECT_URI',
   state: 'STATE',
+  usePopup: true,
 });
 ```
 Now you have a `vue-apple-signin` global component, ready for use.
@@ -40,8 +41,15 @@ Now you have a `vue-apple-signin` global component, ready for use.
   color="black"
   :border="true"
   type="sign in"
+  :onSuccess="callSuccess"
+  :onFailure="callFail"
 ></vue-apple-signin>
 ```
+`:onSuccess` can be used as callback function to retrieve Apple user data and code to run a 
+validation check with the server.
+`:onFailure` will be called when authentication failed.
+
+Make sure `usePopup` is set to `true` for callback to work.
 
 ## Properties
 |name|type|default|value|
