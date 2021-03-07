@@ -148,7 +148,7 @@ export default {
       methods:{
         callOnSuccess(data){
           if(this.onSuccess){
-            const appleUserData = self.getAppleDataFromToken(data.detail.authorization.id_token);
+            const appleUserData = this.getAppleDataFromToken(data.detail.authorization.id_token);
             this.onSuccess({authorization: data.detail.authorization, userData: appleUserData});
           }
         },

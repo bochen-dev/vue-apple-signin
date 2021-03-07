@@ -58,7 +58,26 @@ validation check with the server.
 `:onFailure` will be called when authentication failed.
 **Make sure `usePopup` is set to `true` for callback to work.**
 
-For more information on styling visit: https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/displaying_sign_in_with_apple_buttons
+On a succesfull login you we get the following data
+```json
+{
+  "authorization": {
+    "code": "[code to verify user with apple server]",
+    "id_token": "[json base64 encode user data]",
+    "state": "[random unique number]"
+  },
+  "userData": {
+      "aud": "com.example.signin", 
+      "auth_time": 1615125205, 
+      "c_hash": "",
+      "exp": 1615211605,
+      "iat": 1615125205,
+      "iss": "https://appleid.apple.com",
+      "nonce_supported": true,
+      "sub": "[Unique user ID]"
+  }
+}
+```
 
 ## Properties
 |name|type|default|value|
@@ -66,6 +85,8 @@ For more information on styling visit: https://developer.apple.com/documentation
 |color|`String`|`black`|`black` / `white`|
 |border|`Boolean`|`true`|`true` / `false`|
 |type|`String`|`sign in`|`sign in` / `sign up` / `apple` / `continue`|
+
+For more information on styling visit: https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/displaying_sign_in_with_apple_buttons
 
 ## Known issues
 `<!DOCTYPE html>` in the `html` file may causes button style to be messed up,
