@@ -38,9 +38,17 @@ Now you have a `vue-apple-signin` global component, ready for use.
 ### Advanced
 ``` html
 <vue-apple-signin
+  mode="center-align"
+  type="sign in"
   color="black"
   :border="true"
-  type="sign in"
+  :radius="15"
+  width="100%"
+  height="100%"
+  logoSize="medium"
+  :logoPosition="0"
+  :labelPosition="0"
+  className="vue-apple-signin"
   :onSuccess="callSuccess"
   :onFailure="callFail"
 ></vue-apple-signin>
@@ -48,8 +56,9 @@ Now you have a `vue-apple-signin` global component, ready for use.
 `:onSuccess` can be used as callback function to retrieve Apple user data and code to run a 
 validation check with the server.
 `:onFailure` will be called when authentication failed.
+**Make sure `usePopup` is set to `true` for callback to work.**
 
-Make sure `usePopup` is set to `true` for callback to work.
+For more information on styling visit: https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/displaying_sign_in_with_apple_buttons
 
 ## Properties
 |name|type|default|value|

@@ -10,6 +10,29 @@ export default {
     Vue.component('vue-apple-signin', {
       name: 'VueAppleSignin',
       props: {
+        mode: {
+          type: String,
+          default: 'center-align',
+          validator (value) {
+            return [
+              'center-align',
+              'left-align',
+              'logo-only',
+            ].indexOf(value) > -1
+          }
+        },
+        type: {
+          type: String,
+          default: 'sign in',
+          validator (value) {
+            return [
+              'sign in',
+              'sign up',
+              'apple',
+              'continue'
+            ].indexOf(value) > -1
+          }
+        },
         color: {
           type: String,
           default: 'black',
@@ -24,24 +47,49 @@ export default {
           type: Boolean,
           default: true
         },
-        type: {
+        radius: {
+          type: Number,
+          default: 15,
+          validator (value) {
+            return value>=0 && value <=50
+          }
+        },
+        width: {
           type: String,
-          default: 'sign in',
+          default: '100%',
+        },
+        height: {
+          type: String,
+          default: '100%',
+        },
+        logoSize: {
+          type: String,
+          default: 'medium',
           validator (value) {
             return [
-              'sign in',
-              'sign up',
-              'apple',
-              'continue'
+              'small',
+              'medium',
+              'large'
             ].indexOf(value) > -1
           }
-
+        },
+        logoPosition: {
+          type: Number,
+          default: 0
+        },
+        labelPosition: {
+          type: Number,
+          default: 0
+        },
+        className: {
+          type: String,
+          default: 'vue-apple-signin'
         },
         onSuccess: {
           type: Function,
           default: null
         },
-        onFail: {
+        onFailure: {
           type: Function,
           default: null
         },
@@ -96,8 +144,8 @@ export default {
           }
         });
         document.addEventListener('AppleIDSignInOnFailure', (error) => {
-          if(self.onFail) {
-            self.onFail(error);
+          if(self.onFailure) {
+            self.onFailure(error);
           }
         });
       },
@@ -116,9 +164,17 @@ export default {
             'div', {
               attrs: {
                 id: 'appleid-signin',
+                'data-mode': this.mode,
+                'data-type': this.type,
                 'data-color': this.color,
                 'data-border': this.dataBorder,
-                'data-type': this.type
+                'data-radius': this.radius,
+                'data-width': this.width,
+                'data-height': this.height,
+                'data-logo-size': this.logoSize,
+                'data-logo-position': this.logoPosition,
+                'data-label-position': this.labelPosition,
+                'class': this.className
               }
             },
         )
