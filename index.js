@@ -137,21 +137,13 @@ export default {
         })
 
         const self = this;
-        document.addEventListener('AppleIDSignInOnSuccess', (data) => {
-          self.callOnSuccess(data);
-        });
-
-        document.addEventListener('AppleIDSignInOnFailure', (error) => {
-          self.callOnFailure(error);
-        });
+        document.addEventListener('AppleIDSignInOnSuccess', self.callOnSuccess);
+        document.addEventListener('AppleIDSignInOnFailure', self.callOnFailure);
       },
       beforeDestroy () {
-        document.removeEventListener('AppleIDSignInOnSuccess', (data) => {
-          self.callOnSuccess(data);
-        });
-        document.removeEventListener('AppleIDSignInOnFailure', (error) => {
-          self.callOnFailure(error);
-        });
+        const self = this;
+        document.removeEventListener('AppleIDSignInOnSuccess', self.callOnSuccess);
+        document.removeEventListener('AppleIDSignInOnFailure', self.callOnFailure);
       },
       methods:{
         callOnSuccess(data){
