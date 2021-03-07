@@ -37,8 +37,14 @@ export default {
           }
 
         },
-        onSuccess: null,
-        onFail: null,
+        onSuccess: {
+          type: Function,
+          default: null
+        },
+        onFail: {
+          type: Function,
+          default: null
+        },
       },
       computed: {
         dataBorder () {
@@ -53,7 +59,7 @@ export default {
 
         const {
           clientId,
-          scope,
+          scope = '',
           redirectURI,
           state,
           usePopup
@@ -61,11 +67,6 @@ export default {
 
         if (!clientId) {
           err('options.clientId must be specified.')
-          return;
-        }
-
-        if (!scope) {
-          err('options.scope must be specified.')
           return;
         }
 

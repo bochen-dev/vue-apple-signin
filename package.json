@@ -4,16 +4,15 @@
   "description": "A vue plugin to include a Apple sign-in button into your web app with popup and callbacks.",
   "main": "dist/vue-apple-signin.min.js",
   "contributors": [
-      {
-        "name": "Brandon Chen",
-        "email": "code.bochen@gmail.com"
-      },
+    {
+      "name": "Brandon Chen",
+      "email": "code.bochen@gmail.com"
+    },
     {
       "name": "Eric van Eldik",
       "email": "ericvaneldik@gmail.com"
     }
   ],
-
   "repository": {
     "type": "git",
     "url": "https://github.com/redsd/vue-apple-signin"
