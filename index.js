@@ -137,19 +137,19 @@ export default {
         })
 
         const self = this;
-        this.$el.addEventListener('AppleIDSignInOnSuccess', (data) => {
+        document.addEventListener('AppleIDSignInOnSuccess', (data) => {
           self.callOnSuccess(data);
         });
 
-        this.$el.addEventListener('AppleIDSignInOnFailure', (error) => {
+        document.addEventListener('AppleIDSignInOnFailure', (error) => {
           self.callOnFailure(error);
         });
       },
       beforeDestroy () {
-        this.$el.removeEventListener('AppleIDSignInOnSuccess', (data) => {
+        document.removeEventListener('AppleIDSignInOnSuccess', (data) => {
           self.callOnSuccess(data);
         });
-        this.$el.removeEventListener('AppleIDSignInOnFailure', (error) => {
+        document.removeEventListener('AppleIDSignInOnFailure', (error) => {
           self.callOnFailure(error);
         });
       },
@@ -161,8 +161,8 @@ export default {
           }
         },
         callOnFailure(error){
-          if(self.onFailure) {
-            self.onFailure(error);
+          if(this.onFailure) {
+            this.onFailure(error);
           }
         },
         getAppleDataFromToken(token){
