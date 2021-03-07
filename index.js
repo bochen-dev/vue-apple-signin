@@ -137,19 +137,34 @@ export default {
         })
 
         const self = this;
-        document.addEventListener('AppleIDSignInOnSuccess', (data) => {
-          if(self.onSuccess){
-            const appleUserData = self.getAppleDataFromToken(data.detail.authorization.id_token);
-            self.onSuccess({authorization: data.detail.authorization, userData: appleUserData});
-          }
+        this.$el.addEventListener('AppleIDSignInOnSuccess', (data) => {
+          self.callOnSuccess(data);
         });
-        document.addEventListener('AppleIDSignInOnFailure', (error) => {
-          if(self.onFailure) {
-            self.onFailure(error);
-          }
+
+        this.$el.addEventListener('AppleIDSignInOnFailure', (error) => {
+          self.callOnFailure(error);
+        });
+      },
+      beforeDestroy () {
+        this.$el.removeEventListener('AppleIDSignInOnSuccess', (data) => {
+          self.callOnSuccess(data);
+        });
+        this.$el.removeEventListener('AppleIDSignInOnFailure', (error) => {
+          self.callOnFailure(error);
         });
       },
       methods:{
+        callOnSuccess(data){
+          if(this.onSuccess){
+            const appleUserData = self.getAppleDataFromToken(data.detail.authorization.id_token);
+            this.onSuccess({authorization: data.detail.authorization, userData: appleUserData});
+          }
+        },
+        callOnFailure(error){
+          if(self.onFailure) {
+            self.onFailure(error);
+          }
+        },
         getAppleDataFromToken(token){
           var base64Url = token.split('.')[1];
           var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
