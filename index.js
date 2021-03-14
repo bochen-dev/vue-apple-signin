@@ -7,8 +7,8 @@ function err (msg) {
 
 export default {
   install (Vue, options) {
-    Vue.component('vue-apple-signin', {
-      name: 'VueAppleSignin',
+    Vue.component('vue-apple-login', {
+      name: 'VueAppleLogin',
       props: {
         mode: {
           type: String,
